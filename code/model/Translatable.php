@@ -1069,24 +1069,24 @@ class Translatable extends DataExtension implements PermissionProvider {
 					_t('Translatable.EXISTING', 'Existing translations'), 
 					3
 				));
-				if(!$tab->fieldByName('existingtrans')) {
+				if (!$tab->fieldByName('existingtrans')) {
 					$existingTransHTML = '<ul>';
-					if ($existingTranslations = $this->getTranslations()) { // TODO PR
+					if ($existingTranslations = $this->getTranslations()) {
 						foreach ($existingTranslations as $existingTranslation) {
 							if ($existingTranslation && $existingTranslation->hasMethod('CMSEditLink')) {
-							$existingTransHTML .= sprintf(
-								'<li><a href="%s">%s</a></li>',
-								Controller::join_links(
-									$existingTranslation->CMSEditLink(),
+								$existingTransHTML .= sprintf(
+									'<li><a href="%s">%s</a></li>',
+									Controller::join_links(
+										$existingTranslation->CMSEditLink(),
 										'?locale=' . $existingTranslation->Locale
-								),
-								i18n::get_locale_name($existingTranslation->Locale)
-							);
+									),
+									i18n::get_locale_name($existingTranslation->Locale)
+								);
+							}
 						}
 					}
-					} // TODO PR
 					$existingTransHTML .= '</ul>';
-					$tab->push(new LiteralField('existingtrans',$existingTransHTML));
+					$tab->push(new LiteralField('existingtrans', $existingTransHTML));
 				}
 			}
 		}		
